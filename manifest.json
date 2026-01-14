@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Map Bookmark Exporter (Kakao & Naver)",
+  "version": "2.0",
+  "description": "카카오맵과 네이버 지도 즐겨찾기를 CSV로 내보내고 구글 지도에 추가합니다.",
+  "permissions": [
+    "scripting",
+    "storage",
+    "downloads"
+  ],
+  "host_permissions": [
+    "*://map.kakao.com/*",
+    "*://map.naver.com/*"
+  ],
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon-128.png",
+    "default_title": "Map Bookmark Exporter"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://map.kakao.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["*://map.naver.com/*"],
+      "js": ["content-naver.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js", "inject-naver.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
