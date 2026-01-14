@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kakao Map Exporter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 320px;
+            padding: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .status {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .status-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .button:active {
+            transform: translateY(0);
+        }
+
+        .button-primary {
+            background: #4285f4;
+            color: white;
+        }
+
+        .button-primary:hover {
+            background: #3367d6;
+        }
+
+        .button-secondary {
+            background: #FEE500;
+            color: #000;
+        }
+
+        .button-secondary:hover {
+            background: #fdd835;
+        }
+
+        .button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .button:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .info {
+            font-size: 11px;
+            color: #999;
+            text-align: center;
+            margin-top: 12px;
+            line-height: 1.4;
+        }
+
+        .emoji {
+            font-size: 16px;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🗺️ Map Exporter</h1>
+        <p>네이버지도, 카카오맵 → 구글 지도</p>
+    </div>
+
+    <div class="status">
+        <div class="status-item">
+            <span class="status-label">저장된 데이터</span>
+            <span class="status-value" id="dataCount">0개 장소</span>
+        </div>
+        <div class="status-item">
+            <span class="status-label">마지막 내보내기</span>
+            <span class="status-value" id="lastExport">없음</span>
+        </div>
+    </div>
+
+    <button class="button button-primary" id="uploadBtn">
+        <span class="emoji">📤</span>
+        구글 지도에 추가하기
+    </button>
+
+    <button class="button button-primary" id="uploadNaverBtn" style="background: #03C75A;">
+        <span class="emoji">🗺️</span>
+        네이버 지도에 추가하기
+    </button>
+
+    <button class="button button-secondary" id="openKakaoBtn">
+        <span class="emoji">🗺️</span>
+        카카오맵 열기
+    </button>
+
+    <div class="info">
+        💡 카카오맵에서 폴더를 클릭한 후<br>
+        "CSV로 내보내기" 버튼을 눌러주세요
+    </div>
+
+    <script src="./main.js" type="module"></script>
+</body>
+</html>
